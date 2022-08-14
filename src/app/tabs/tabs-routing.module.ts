@@ -25,6 +25,11 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/map',
+    pathMatch: 'full'
   }
 ];
 
