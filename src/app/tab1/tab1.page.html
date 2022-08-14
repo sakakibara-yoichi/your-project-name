@@ -1,8 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-searchbar placeholder="請輸入地址" [(ngModel)]="address"></ion-searchbar>
+
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +11,6 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+ <iframe width="100%" height="100%"  [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyAkeMvMHkTgqLmMWY4XJdRA7QBx2eOGEPI&q='+address)" frameborder="0">
+ </iframe>
 </ion-content>
