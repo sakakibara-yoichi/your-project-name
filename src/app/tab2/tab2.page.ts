@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { concatMap, scan,tap } from 'rxjs/operators';
+import { concatMap, scan, tap } from 'rxjs/operators';
 import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { MenuController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -15,19 +16,22 @@ export class Tab2Page {
   productList = [];
   index = 0;
   end = 10
+  cart = [];
   page$ = new BehaviorSubject({ start: this.index, end: this.end });
+  boolMenu = false;
   product = this.page$.pipe(
     concatMap(({ start, end }) => this.getData(start, end)),
-    tap(data=>console.log(data)),
+    tap(data => console.log(data)),
     scan((acc: any[], items: any[]) => [...items])
   );
 
   constructor(
-    private http: HttpClient
+    public toastController: ToastController,
+    private http: HttpClient,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
-
   }
   getData(start, end) {
     return new Observable(sub => {
@@ -42,22 +46,27 @@ export class Tab2Page {
       })
     });
   }
+
   loadData($event) {
     this.page$.next({ start: this.index, end: this.end });
     $event.target.complete();
   }
 
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
+  async buyNow(product) {
+    this.cart.push(product);
+    const toast = await this.toastController.create({
+      message: 'Successfully Added',
+      duration: 2000,
+      color:'primary',
+      icon:'checkmark-outline',
+      mode:'ios'
+    });
+    toast.present();
   }
 
-  confirm() {
-    this.modal.dismiss('123', 'confirm');
+  openMenu() {
+    this.boolMenu ? this.menu.close('end') : this.menu.open('end');
+    this.boolMenu = !this.boolMenu;
   }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-    }
-  }
 }
