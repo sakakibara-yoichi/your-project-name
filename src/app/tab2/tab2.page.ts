@@ -57,9 +57,9 @@ export class Tab2Page {
     const toast = await this.toastController.create({
       message: 'Successfully Added',
       duration: 2000,
-      color:'primary',
-      icon:'checkmark-outline',
-      mode:'ios'
+      color: 'primary',
+      icon: 'checkmark-outline',
+      mode: 'ios'
     });
     toast.present();
   }
@@ -69,4 +69,8 @@ export class Tab2Page {
     this.boolMenu = !this.boolMenu;
   }
 
+  removeCartProduct(index) {
+    console.log(index);
+    this.cart.splice(index, 1);
+  }
 }
