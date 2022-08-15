@@ -45,21 +45,21 @@
   </ion-header>
   <ion-grid>
     <ion-row>
-      <ion-col size="3" sizeLg="4" sizeMd="6" sizeXs="12" *ngFor="let item of product | async">
+      <ion-col size="3" sizeLg="4" sizeMd="6" sizeXs="12" *ngFor="let item of product | async;trackBy:productById">
         <ion-card style="height:100%;width: 100%;padding-left: 32px;padding-right: 32px;display: flex;
         flex-wrap: wrap;
         align-items: end;
         padding-right: 32px;">
-          <ion-card-header style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-            <ion-card-title>{{item.name}}</ion-card-title>
+          <ion-card-header style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 100%;">
+            <ion-card-title style="margin:16px;">{{item.name}}</ion-card-title>
+            <ion-img [src]="item.image" style="height:20vh;width: 100%;margin:16px;display: flex;justify-self: center;"></ion-img>
           </ion-card-header>
-          <ion-card-content style="line-height:2em;padding: 16px;text-align: left;justify-content: flex-start;display: flex;
+          <ion-text  color="white"style="font-weight:bold;margin:16px;">{{item.description}}</ion-text><br>
+          <ion-card-content style="line-height:2em;padding: 16px;text-align: left;justify-content: flex-start;display: flex;width: 100%;
           flex-wrap: wrap;
           align-items: end;
           padding-right: 32px;">
-            <ion-img [src]="item.image" style="height:20vh;width: 100%;"></ion-img>
             <div style="height: 100%;margin: 16px;color: white;font-size: 24px;line-height: 40px;font-weight: 300;">
-              <ion-text style="font-weight:bold;">{{item.description}}</ion-text><br>
               <ion-chip>{{item.type}}</ion-chip>
               <ion-chip *ngFor="let type of item.category">
                 {{type.name}}

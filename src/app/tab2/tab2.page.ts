@@ -73,4 +73,8 @@ export class Tab2Page {
     console.log(index);
     this.cart.splice(index, 1);
   }
+
+  productById(index, product) {
+    return product.id;
+}
 }
