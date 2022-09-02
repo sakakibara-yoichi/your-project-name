@@ -27,9 +27,9 @@ ul {padding: 0;margin: 0;}
 font-family: 'Inter', sans-serif;}
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {background-color: transparent;background-image: none;color:#000;}
 /* 1.2 Typography */
-h1,h2,h3,h4,h5,h6,.ds-banner p,.ds-banner ul,.ds-banner li,.ds-banner span {font-family: 'Inter', sans-serif;color: #FFF !important;}
+h1,h2,h3,h4,h5,h6,.ds-banner p,.ds-banner ul,.ds-banner li,.ds-banner span {font-family: 'Inter', sans-serif;color: #000 !important;}
 .ds-about-section h1,.ds-about-section h2,.ds-about-section p,.ds-experience-section span{
-  color:#FFF !important;
+  color:#000 !important;
 }
 figure{ margin: 0 }
 svg,img { max-width: 100%; height: auto; }
